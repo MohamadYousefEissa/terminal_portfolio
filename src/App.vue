@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { onBeforeMount } from 'vue'
 import BaseInput from './components/BaseInput.vue'
 import CommandContent from './components/CommandContent.vue'
 import TerminalDirectory from './components/TerminalDirectory.vue'
@@ -9,8 +10,14 @@ import { useDataStore } from './stores/data'
 const appStore = useAppStore()
 const dataStore = useDataStore()
 
-dataStore.getSkills()
-dataStore.getProjects()
+onBeforeMount(async () => {
+  try {
+    await Promise.all([dataStore.getCv(), dataStore.getSkills(), dataStore.getProjects()])
+  } catch (err) {
+    console.error(err)
+    alert('Error when get the data please try again')
+  }
+})
 </script>
 
 <template>

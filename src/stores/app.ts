@@ -1,7 +1,6 @@
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
 import { type Command } from '@/types'
-import { BASE_URL } from './data'
 
 let id = 0
 
@@ -9,6 +8,7 @@ export const useAppStore = defineStore('app', () => {
   const helpCommands = {
     projects: "view projects that I've coded",
     skills: 'view my skills and technologies',
+    cv: 'download my cv',
     gui: 'go to my portfolio in GUI',
     help: 'check available commands',
     echo: 'print out anything',
@@ -61,8 +61,6 @@ export const useAppStore = defineStore('app', () => {
     if (input.value.trim().length === 0) return
     if (input.value === 'clear') {
       commands.value = []
-    } else if (input.value === 'gui') {
-      window.open(BASE_URL, '_blank', 'noopener,noreferrer')
     } else {
       const h: Command = {
         id: id.toString(),

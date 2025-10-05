@@ -10,6 +10,7 @@ export const useDataStore = defineStore('data', () => {
   const projects = ref<Project[]>([])
   const mobileProjects = ref<Project[]>([])
   const webProjects = ref<Project[]>([])
+  const cvUrl = ref('')
 
   const getSkills = async () => {
     const { data } = await axios.get(`${BASE_URL}/api/skills`)
@@ -23,5 +24,20 @@ export const useDataStore = defineStore('data', () => {
     mobileProjects.value = projects.value.filter((item) => item.type === ProjectType.mobile)
   }
 
-  return { getSkills, getProjects, skills, projects, webProjects, mobileProjects, BASE_URL }
+  const getCv = async () => {
+    const { data } = await axios.get(`${BASE_URL}/api/cv`)
+    cvUrl.value = data.cv.url
+  }
+
+  return {
+    getSkills,
+    getProjects,
+    getCv,
+    skills,
+    projects,
+    webProjects,
+    mobileProjects,
+    cvUrl,
+    BASE_URL,
+  }
 })

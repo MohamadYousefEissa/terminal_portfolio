@@ -28,6 +28,12 @@ if (splitedCommand[0] === 'skills' && splitedCommand[1] && splitedCommand.length
       item.label.toLowerCase().includes(splitedCommand[1]!.toLowerCase()) ||
       splitedCommand[1]?.toLowerCase().includes(item.label.toLowerCase()),
   )
+} else if (props.command.text === 'gui') {
+  window.open(BASE_URL, '_blank', 'noopener,noreferrer')
+} else if (props.command.text === 'cv') {
+  window.open(dataStore.cvUrl, '_blank', 'noopener,noreferrer')
+} else if (props.command.text === 'cv get') {
+  window.open(dataStore.cvUrl + '?download=1', '_blank', 'noopener,noreferrer')
 }
 </script>
 
@@ -103,6 +109,16 @@ if (splitedCommand[0] === 'skills' && splitedCommand[1] && splitedCommand.length
     <p v-if="filteredProjects.length === 0">project not found</p>
     <p v-for="item in filteredProjects" :key="item._id"><ProjectContent :project="item" /></p>
   </div>
+
+  <!-- ---- -->
+
+  <div v-else-if="command.text === 'cv'">
+    <p>Use: 'cv get' to download cv</p>
+  </div>
+
+  <!-- ---- -->
+
+  <div v-else-if="command.text === 'gui' || command.text === 'cv get'"></div>
 
   <!-- ---- -->
 
