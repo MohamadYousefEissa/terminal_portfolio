@@ -2,7 +2,7 @@
 
 @theme {
   --color-bg: rgb(29, 42, 53);
-  --color-main: #fff;
+  --color-main: rgb(203, 213, 225);
   --color-sec: rgb(5, 206, 145);
   --color-third: rgb(255, 157, 0);
 }
@@ -17,6 +17,7 @@
 
 html[data-theme='classic'] {
   --color-bg: #111;
+  --color-main: #fff;
   --color-sec: #fff;
   --color-third: #fff;
   ::-webkit-scrollbar-thumb {
@@ -35,12 +36,16 @@ html[data-theme='hacker'] {
   --color-main: rgb(1, 255, 0);
   --color-sec: rgb(229, 229, 0);
   --color-third: rgb(4, 165, 0);
+  ::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.101);
+  }
 }
 
 @font-face {
   font-family: 'fira';
   src: url('./fonts/FiraCode-VariableFont_wght.ttf');
   font-display: swap;
+  font-weight: 400;
 }
 
 body {
@@ -49,4 +54,12 @@ body {
   padding: 24px;
   font-family: 'fira';
   transition: background-color 0.3s;
+}
+
+a {
+  border-bottom: 2px dashed;
+
+  &:hover {
+    border-style: solid;
+  }
 }

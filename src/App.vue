@@ -1,14 +1,16 @@
 <script setup lang="ts">
 import BaseInput from './components/BaseInput.vue'
+import CommandContent from './components/CommandContent.vue'
 import TerminalDirectory from './components/TerminalDirectory.vue'
 import ThemeDropdown from './components/ThemeDropdown.vue'
 import { useAppStore } from './stores/app'
-import { useApisStore } from './stores/apis'
+import { useDataStore } from './stores/data'
 
 const appStore = useAppStore()
-const apisStore = useApisStore()
+const dataStore = useDataStore()
 
-apisStore.getSkills()
+dataStore.getSkills()
+dataStore.getProjects()
 </script>
 
 <template>
@@ -20,11 +22,11 @@ apisStore.getSkills()
   </div>
   <br />
   <div>
-    <div v-for="(item, i) in appStore.history" :key="i">
+    <div v-for="item in appStore.commands" :key="item.id">
       <TerminalDirectory />
       {{ item.text }}
       <br />
-      <div v-html="item.content"></div>
+      <CommandContent :command="item" />
       <br />
     </div>
   </div>

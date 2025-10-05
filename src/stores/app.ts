@@ -1,19 +1,24 @@
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
+import { type Command } from '@/types'
+import { BASE_URL } from './data'
 
 let id = 0
 
-const commands = ['help', 'me']
-
-interface History {
-  id: string
-  text: string
-  content: string
-}
-
 export const useAppStore = defineStore('app', () => {
+  const helpCommands = {
+    projects: "view projects that I've coded",
+    skills: 'view my skills and technologies',
+    gui: 'go to my portfolio in GUI',
+    help: 'check available commands',
+    echo: 'print out anything',
+    history: 'view command history',
+    clear: 'clear the terminal',
+  }
+
   const input = ref<string>('')
-  const history = ref<History[]>([])
+  // let inputElement: HTMLInputElement
+  const commands = ref<Command[]>([])
   let historyTrigger = 0
 
   const onPress = (ev: KeyboardEvent) => {
@@ -23,27 +28,27 @@ export const useAppStore = defineStore('app', () => {
         break
       }
       case 'ArrowDown': {
-        if (history.value.length === 0) return
-        if (historyTrigger < history.value.length) {
+        if (commands.value.length === 0) return
+        if (historyTrigger < commands.value.length) {
           historyTrigger++
-          if (input.value !== history.value[historyTrigger]?.text) {
-            input.value = history.value[historyTrigger]?.text ?? ''
+          if (input.value !== commands.value[historyTrigger]?.text) {
+            input.value = commands.value[historyTrigger]?.text ?? ''
           }
         }
-        if (historyTrigger == history.value.length) {
+        if (historyTrigger === commands.value.length) {
           input.value = ''
         }
         break
       }
       case 'ArrowUp': {
-        if (history.value.length === 0) return
+        if (commands.value.length === 0) return
         if (historyTrigger >= 0) {
           historyTrigger--
-          if (input.value !== history.value[historyTrigger]?.text) {
-            input.value = history.value[historyTrigger]?.text ?? ''
+          if (input.value !== commands.value[historyTrigger]?.text) {
+            input.value = commands.value[historyTrigger]?.text ?? ''
           }
         }
-        if (historyTrigger == -1) {
+        if (historyTrigger === -1) {
           input.value = ''
         }
         break
@@ -52,28 +57,24 @@ export const useAppStore = defineStore('app', () => {
   }
 
   const handleUserSubmit = () => {
-    if (input.value.trim().length == 0) return
+    // if (!inputElement) inputElement = document.getElementById('input') as HTMLInputElement
+    if (input.value.trim().length === 0) return
     if (input.value === 'clear') {
-      history.value = []
+      commands.value = []
+    } else if (input.value === 'gui') {
+      window.open(BASE_URL, '_blank', 'noopener,noreferrer')
     } else {
-      const h: History = {
+      const h: Command = {
         id: id.toString(),
         text: input.value,
-        content:
-          commands.indexOf(input.value) === -1
-            ? `command not found: ${input.value}`
-            : getCommandContent(input.value),
       }
-      history.value.push(h)
-      historyTrigger = history.value.length
+      commands.value.push(h)
+      historyTrigger = commands.value.length
       id++
+      setTimeout(() => window.scrollTo({ top: document.body.scrollHeight }))
     }
     input.value = ''
   }
 
-  const getCommandContent = (text: string): string => {
-    return `maaan ${text}`
-  }
-
-  return { history, input, onPress }
+  return { input, onPress, commands, helpCommands }
 })

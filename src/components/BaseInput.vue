@@ -8,7 +8,16 @@ const appStore = useAppStore()
 <template>
   <div class="flex">
     <TerminalDirectory />
-    <input type="text" name="input" autofocus @keyup="appStore.onPress" v-model="appStore.input" />
+    <input
+      type="text"
+      name="input"
+      id="input"
+      autofocus
+      autocomplete="off"
+      spellcheck="false"
+      @keyup="appStore.onPress"
+      v-model="appStore.input"
+    />
   </div>
 </template>
 
