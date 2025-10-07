@@ -12,6 +12,7 @@ const appStore = useAppStore()
       type="text"
       name="input"
       id="input"
+      aria-label="hidden"
       autofocus
       autocomplete="off"
       spellcheck="false"

@@ -69,7 +69,6 @@ export const useAppStore = defineStore('app', () => {
       commands.value.push(h)
       historyTrigger = commands.value.length
       id++
-      setTimeout(() => window.scrollTo({ top: document.body.scrollHeight }))
     }
     input.value = ''
   }

@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { onBeforeMount } from 'vue'
-import BaseInput from './components/BaseInput.vue'
 import CommandContent from './components/CommandContent.vue'
 import TerminalDirectory from './components/TerminalDirectory.vue'
 import ThemeDropdown from './components/ThemeDropdown.vue'
 import { useAppStore } from './stores/app'
 import { useDataStore } from './stores/data'
+import TerminalInput from './components/TerminalInput.vue'
 
 const appStore = useAppStore()
 const dataStore = useDataStore()
@@ -37,5 +37,5 @@ onBeforeMount(async () => {
       <br />
     </div>
   </div>
-  <BaseInput />
+  <TerminalInput />
 </template>

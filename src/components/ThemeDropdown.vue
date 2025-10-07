@@ -33,7 +33,7 @@ onBeforeMount(() => {
 
 <template>
   <div class="h-10 sm:h-0">
-    <div class="theme-popup absolute right-6" ref="popup">
+    <div class="theme-popup absolute right-6 z-10" ref="popup">
       <input type="radio" name="theme" id="classic" value="classic" v-model="radio" />
       <input type="radio" name="theme" id="dark" value="dark" v-model="radio" />
       <input type="radio" name="theme" id="light" value="light" v-model="radio" />
