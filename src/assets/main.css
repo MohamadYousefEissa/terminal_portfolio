@@ -37,7 +37,7 @@ html[data-theme='hacker'] {
   --color-sec: rgb(229, 229, 0);
   --color-third: rgb(4, 165, 0);
   ::-webkit-scrollbar-thumb {
-    background-color: rgba(255, 255, 255, 0.101);
+    background-color: rgba(255, 255, 255, 0.1);
   }
 }
 
@@ -61,5 +61,10 @@ a {
 
   &:hover {
     border-style: solid;
+    font-weight: bold;
   }
+}
+a:focus {
+  outline: 0;
+  font-weight: bold;
 }

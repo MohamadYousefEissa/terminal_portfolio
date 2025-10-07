@@ -21,15 +21,25 @@ onMounted(() => {
       window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })
     }, 300)
     gsap
-      .from(split.lines, {
-        display: 'none',
-        width: 0,
-        overflow: 'hidden',
-        whiteSpace: 'nowrap',
-        stagger: 0.3,
-        duration: 2,
-        ease: 'none',
-      })
+      .fromTo(
+        split.lines,
+        {
+          display: 'none',
+          width: 0,
+          overflow: 'hidden',
+          whiteSpace: 'nowrap',
+          stagger: 0.3,
+          duration: 2,
+          ease: 'none',
+        },
+        {
+          display: 'block',
+          width: '100%',
+          stagger: 0.3,
+          duration: 2,
+          ease: 'none',
+        },
+      )
       .then(() => clearInterval(interval))
   }
 })
@@ -78,9 +88,7 @@ if (splitedCommand[0] === 'skills' && splitedCommand[1] && splitedCommand.length
     <!-- ---- -->
     <div v-else-if="command.text === 'skills'">
       <a :href="`${BASE_URL}/skills/`" class="text-sec" target="_blank">View in GUI</a>
-      <br /><br />
-      <p>Usage: skills &lt;skill-name&gt;</p>
-      <br />
+      <p class="my-5">Usage: skills &lt;skill-named&gt;</p>
       <p v-for="item in dataStore.skills" :key="item._id">
         <SkillContent :skill="item" />
       </p>
@@ -97,13 +105,8 @@ if (splitedCommand[0] === 'skills' && splitedCommand[1] && splitedCommand.length
     <!-- ---- -->
     <div v-else-if="command.text === 'projects'">
       <a :href="`${BASE_URL}/projects/`" class="text-sec" target="_blank">View in GUI</a>
-      <br /><br />
-      <p>Usage: projects &lt;project-name&gt;</p>
-      <br />
-      <b v-if="dataStore.webProjects.length !== 0"
-        ><br />
-        Web projects :</b
-      >
+      <p class="my-5">Usage: projects &lt;project-name&gt;</p>
+      <b v-if="dataStore.webProjects.length !== 0"> Web projects :</b>
       <li
         v-for="(item, i) in dataStore.webProjects"
         :key="item._id"
