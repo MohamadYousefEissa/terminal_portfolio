@@ -195,8 +195,7 @@ onBeforeMount(() => {
   --list_bg: var(--btn_bg);
   --list_border_radius: var(--btn_border_radius);
   --list_gap: 0.1875em;
-  --list_btn_hover_bg: #79797948;
-  --list_btn_active: #b9b9b970;
+  --list_btn_active: #79797948;
   --list_btn_border_radius: 0.25em;
   --list_btn_padding: 0.35em 1em;
   --list_btn_gap: 0.4375em;
@@ -289,11 +288,6 @@ onBeforeMount(() => {
 #checkbox:checked ~ .theme-popup__list-container {
   visibility: visible;
   opacity: 1;
-}
-
-.theme-popup__list label:hover,
-#checkbox:checked ~ .theme-popup__button {
-  background-color: var(--list_btn_hover_bg);
 }
 
 #classic:checked ~ .theme-popup__list-container label[for='classic'],

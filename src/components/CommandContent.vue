@@ -21,26 +21,18 @@ onMounted(() => {
       window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })
     }, 300)
     gsap
-      .fromTo(
-        split.lines,
-        {
-          display: 'none',
-          width: 0,
-          overflow: 'hidden',
-          whiteSpace: 'nowrap',
-          stagger: 0.3,
-          duration: 2,
-          ease: 'none',
-        },
-        {
-          display: 'block',
-          width: '100%',
-          stagger: 0.3,
-          duration: 2,
-          ease: 'none',
-        },
-      )
-      .then(() => clearInterval(interval))
+      .from(split.lines, {
+        display: 'none',
+        width: 0,
+        overflow: 'hidden',
+        whiteSpace: 'nowrap',
+        stagger: 0.3,
+        duration: 2,
+        ease: 'none',
+      })
+      .then(() => {
+        clearInterval(interval)
+      })
   }
 })
 
