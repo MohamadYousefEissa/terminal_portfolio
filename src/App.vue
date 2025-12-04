@@ -6,6 +6,7 @@ import ThemeDropdown from './components/ThemeDropdown.vue'
 import { useAppStore } from './stores/app'
 import { useDataStore } from './stores/data'
 import TerminalInput from './components/TerminalInput.vue'
+import AsciiName from './components/AsciiName.vue'
 
 const appStore = useAppStore()
 const dataStore = useDataStore()
@@ -23,6 +24,7 @@ onBeforeMount(async () => {
 <template>
   <ThemeDropdown />
   <div>
+    <AsciiName />
     <p>Welcome to my terminal portfolio. (Version 1.0.0)</p>
     <p>Made by <span class="text-third">Mohamad Yousef Eissa</span></p>
     <p>For a list of available commands, type `<span class="text-sec">help</span>`.</p>
